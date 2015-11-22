@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/base.css"/>
+		<link rel="stylesheet" type="text/css" href="css/silder.css"/>
+		<link rel="stylesheet" type="text/css" href="css/font-awesome/css/font-awesome.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/page.css"/>
+		<script src="js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="js/move.js"></script>
+        <script src="js/slider.js"></script>
+       <style type="text/css">
+       	.good{ width: 920px; height:auto; top: 30px;}
+	  .good .gTitle{ height: 30px; line-height: 30px;}
+	  .good .gTitle a{ color: #999999; padding: 0 10px;}
+	  .goodList li { height: 280px; width: 225px; background-color: #e6e6e6; float: left; margin-top:20px; margin-right: 5px; box-shadow: 5px 0px 10px #CBCBCB;}/*�ұ���Ӱ*/    }
+	  .goodList .favourite{ background:url(img/heart.gif); padding-left: 20px; height: 20px; color: #999999;}
+       </style>
+        <script type="text/javascript">
+   $(function() {
+   	var oDiv1=document.getElementById("oDiv");
+ 	var oUl=oDiv1.getElementsByTagName("ul")[0];
+ 	var aLi=oUl.getElementsByTagName("li");
+ 	var imgWidth=230;
+ 	 var iNow=0;	
+ 	 var timer=null;
+ 	oUl.style.width=aLi.length*imgWidth+"px";
+	var bannerSlider = new Slider($('#banner_tabs'), {
+		time: 4000,
+		delay: 400,
+		event: 'hover',
+		auto: true,
+		mode: 'fade',
+		controller: $('#bannerCtrl'),
+		activeControllerCls: 'active'
+	});
+	$('#banner_tabs .flex-prev').click(function() {
+		bannerSlider.prev();
+	});
+	$('#banner_tabs .flex-next').click(function() {
+		bannerSlider.next();
+	});
+	
+	//时间
+	var oDate=new Date();
+	 $(".time").html(oDate.getFullYear()+"-"+(oDate.getMonth()+1)+"-"
+	 +oDate.getDate()+" "+oDate.getHours()+":"+oDate.getMinutes()+":"+oDate.getSeconds());
+	 
+//	 画廊展示
+ $(".showPre").click(function(){
+ 	 
+        
+         if(aLi.length+iNow>4)
+         {    iNow--;
+         	startMove(oUl,{left:iNow*imgWidth}); 
+         }
+         
+ 	  
+ });
+  	$(".showNext").click(function(){
+  		if(oUl.offsetLeft<0)
+  		{
+  		      iNow++;
+  		  startMove(oUl,{left:iNow*imgWidth});
+  		 }
+  		
+  	});
+  	
+//	nav样式
+    $(".aCalss").hover(function(){
+        $(".navClass").each(function(){
+        	$(".navClass").css("display","none");
+        })
+        $(this).children("div").css("display","block"); 
+        clearInterval(timer);
+    },function()
+    {     var This=$(this);
+    	timer=setTimeout(function(){
+    	   This.children("div").css("display","none");
+    },1000);
+    	    
+    });
+      $(".navClass").hover(function(){
+      	 
+      	   clearInterval(timer);
+      },function(){
+      	var This=$(this);
+    	timer=setTimeout(function(){
+    	   This.children("div").css("display","none");
+    },1000);
+    	    
+      })
+  });
+      
+   
+</script>
+
+	</head>
+	<body>	
+	<!--轮播广告-->	
+<div id="banner_tabs" class="flexslider pr">
+	<ul class="slides">
+		<li>
+			<a title="" target="_blank" href="#">
+				<img width="w" alt="" style="background: url(img/banner1.jpg) no-repeat center;" src="img/alpha.png">
+			</a>
+		</li>
+		  <li>
+			<a title="" target="_blank" href="#">
+				<img width="w" alt="" style="background: url(img/banner2.jpg) no-repeat center;" src="img/alpha.png">
+			</a>
+		</li><li>
+			<a title="" target="_blank" href="#">
+				<img width="w" alt="" style="background: url(img/banner3.jpg) no-repeat center;" src="img/alpha.png">
+			</a>
+		</li><li>
+			<a title="" target="_blank" href="#">
+				<img width="w" alt="" style="background: url(img/banner2.jpg) no-repeat center;" src="img/alpha.png">
+			</a>
+		</li>
+		<li>
+			<a title="" target="_blank" href="#">
+				<img width="w" alt="" style="background: url(img/banner3.jpg) no-repeat center;" src="img/alpha.png">
+			</a>
+		</li>
+	</ul>
+	<ul class="flex-direction-nav">
+		<li><a class="flex-prev" href="javascript:;">Previous</a></li>
+		<li><a class="flex-next" href="javascript:;">Next</a></li>
+	</ul>
+	<ol id="bannerCtrl" class="flex-control-nav flex-control-paging">
+		<li><a>1</a></li>
+		<li><a>2</a></li>
+		<li><a>3</a></li>
+		<li><a>4</a></li>
+		<li><a>5</a></li>
+	</ol>
+</div>
+
+ <!--登录条的制作-->
+    <div class="loginIn w pa l0 white ">
+    	<div class="w960 autoMargin loginIn_content f12 ">
+    		<span>易宝城，让艺术走进千家万户</span>
+    		<ul class="fr">
+    		<li><a href="">登录</a></li>
+    		<li><a href="">注册</a></li>
+    		<li class="loginIn_lastLitem"><a href="">购物车<span class="f18" id="goodNumber">0</span>件</a></li>
+    	</ul>
+    	</div>
+    	<!--登录条结束-->
+    	
+    	<!--导航条制作-->
+    	<div class="nav pa w l0">
+    		<div class="navContent w960 autoMargin h50 ">
+    			<span class="logo f30">
+    				易宝城
+    			</span>
+    		<a href="" id="index" class="aCalss">首页</a>
+    		<a href="" id="classical" class="aCalss">分类
+    			 <div class="pa l0 t0 navClass">
+    		       <p style="height: 40px;">陶瓷制品</p>
+    		        
+    		   	  <ol style="font-size: 12px;">
+    		   	   	<li>景德镇瓷器</li>
+    		   	   	<li>宜兴紫砂</li>
+    		   	   	<li>彩陶</li>
+    		   	   	<li>德化白瓷</li>
+    		   	   	<li>黑陶</li>
+    		   	   </ol>
+    		   	   
+    		<p class="cb" style="height: 40px;">陶瓷制品</p>
+    		   	 <ol style="font-size: 12px;">
+    		   	   	<li>景德镇瓷器</li>
+    		   	   	<li>宜兴紫砂</li>
+    		   	   	<li>彩陶</li>
+    		   	   	<li>德化白瓷</li>
+    		   	   	<li>黑陶</li>
+    		   	   </ol>
+    		   	   <p class="cb" style="height: 40px;">陶瓷制品</p>
+    		   	 <ol style="font-size: 12px;">
+    		   	   	<li>景德镇瓷器</li>
+    		   	   	<li>宜兴紫砂</li>
+    		   	   	<li>彩陶</li>
+    		   	   	<li>德化白瓷</li>
+    		   	   	<li>黑陶</li>
+    		   	   </ol>
+    		   </div>
+    		</a>
+    			<a href="" id="homeArt" class="aCalss">家庭艺术品
+    			 <div class="pa l0 t0 navClass">
+    		       <p style="height: 40px;">陶瓷制品</p>
+    		        
+    		   	  <ol style="font-size: 12px;">
+    		   	   	<li>景德镇瓷器</li>
+    		   	   	<li>宜兴紫砂</li>
+    		   	   	<li>彩陶</li>
+    		   	   	<li>德化白瓷</li>
+    		   	   	<li>黑陶</li>
+    		   	   </ol>
+    		   	   
+    		<p class="cb" style="height: 40px;">陶瓷制品</p>
+    		   	 <ol style="font-size: 12px;">
+    		   	   	<li>景德镇瓷器</li>
+    		   	   	<li>宜兴紫砂</li>
+    		   	   	<li>彩陶</li>
+    		   	   	<li>德化白瓷</li>
+    		   	   	<li>黑陶</li>
+    		   	   </ol>
+    		   	   <p class="cb" style="height: 40px;">陶瓷制品</p>
+    		   	 <ol style="font-size: 12px;"> 
+    		   	   	<li>宜兴紫砂</li>
+    		   	   	<li>彩陶</li>
+    		   	   	<li>德化白瓷</li>
+    		   	   	<li>黑陶</li>
+    		   	   </ol>
+    		   </div>
+    		</a>
+    		      
+    		<a href="" id="officeArt" class="aCalss">办公室艺术品
+    		 <div class="pa l0 t0 navClass">
+    		       <p style="height: 40px;">陶瓷制品</p>
+    		        
+    		   	  <ol style="font-size: 12px;">
+    		   	   	<li>景德镇瓷器</li>
+    		   	   	<li>宜兴紫砂</li>
+    		   	   	<li>彩陶</li>
+    		   	   	<li>德化白瓷</li>
+    		   	   	<li>黑陶</li>
+    		   	   </ol>
+    		   	   
+    		<p class="cb" style="height: 40px;">陶瓷制品</p>
+    		   	 <ol style="font-size: 12px;">
+    		   	   	<li>景德镇瓷器</li>
+    		   	   	<li>宜兴紫砂</li>
+    		   	   	<li>彩陶</li>
+    		   	   	<li>德化白瓷</li>
+    		   	   	<li>黑陶</li>
+    		   	   </ol>
+    		   	   <p class="cb" style="height: 40px;">陶瓷制品</p>
+    		   	 <ol style="font-size: 12px;"> 
+    		   	   	<li>宜兴紫砂</li>
+    		   	   	<li>彩陶</li>
+    		   	   	<li>德化白瓷</li>
+    		   	   	<li>黑陶</li>
+    		   	   </ol>
+    		   </div>
+    		</a>
+    		<a href="" id="save" class="aCalss">收藏品</a>
+    		<a href="" id="gif" class="aCalss">礼品</a>
+    		<a href="" id="seller" class="aCalss">商家进驻</a>
+    		<a href="" id="seller"class="aCalss" ><i class="fa fa-search pt-5 f16 co5"></i></a>
+    		</div>
+    	</div>
+    <!--导航条的制作结束-->	
+    
+    	
+    </div>
+<!--轮播广告结束-->
+
+<!--公告条的制作-->
+     <div class="notice w">
+     	<div class="w960 autoMargin">
+     <p class="noticeTitle f14">公告消息
+     	<a class="f12 pl-100">
+     		<img src="img/crile.gif" width="12" class=" pr-5"/>100位抗战英雄珍邮大全网络隆重发行</a>
+     		<!--向右浮动的时候谁先定义谁在最右边-->
+     		<a class="fr textScroll lightGreen  ml-25">
+     			<marquee  direction="left" scrollamount="3">
+     				1.100位抗战英雄珍邮大全网络隆重发行   2.向右浮动的时候谁先定义谁在最右边</marquee></a>
+     		<a class="time"></a>
+     		
+     </p>
+    </div>
+     </div>
+     <!--公告条的制作结束-->
+     
+     <!--画廊的制作-->
+     <div class="showLan autoMargin pr">
+     	<a href="javacript:;" class="pa l0 showPre" ><img src="img/arrow1.png"/></a>
+     	<a href="javacript:;" class="pa r0 showNext" ><img src="img/arrow2.png"/></a>
+     	<div id="oDiv">
+     	<ul class="showList pa" id="Showlist">
+     		<li><img src="img/huaLang1.png"/>
+     			<div class="addInfo pa t0 tc pointer">
+     				<br /><br /><br /> 
+     				  <span class="white f16">名家纯手工紫砂壶</span><br /><br />
+     				  <span class="Artprice lightGreen f18">￥1799</span>
+     			</div>
+     		</li>
+     	 <li><img src="img/huaLang2.png"/>
+     			<div class="addInfo pa t0 tc pointer">
+     				<br /><br /><br /> 
+     				  <span class="white f16">名家纯手工紫砂壶</span><br /><br />
+     				  <span class="Artprice lightGreen f18">￥1799</span>
+     			</div>
+     		</li>
+     		<li><img src="img/huaLang3.png"/>
+     			<div class="addInfo pa t0 tc pointer">
+     				<br /><br /><br /> 
+     				  <span class="white f16">名家纯手工紫砂壶</span><br /><br />
+     				  <span class="Artprice lightGreen f18">￥1799</span>
+     			</div>
+     		</li>
+     		<li><img src="img/huaLang1.png"/>
+     			<div class="addInfo pa t0 tc pointer">
+     				<br /><br /><br /> 
+     				  <span class="white f16">名家纯手工紫砂壶</span><br /><br />
+     				  <span class="Artprice lightGreen f18">￥1799</span>
+     			</div>
+     		</li>
+     		<li><img src="img/huaLang2.png"/>
+     			<div class="addInfo pa t0 tc pointer">
+     				<br /><br /><br /> 
+     				  <span class="white f16">名家纯手工紫砂壶</span><br /><br />
+     				  <span class="Artprice lightGreen f18">￥1799</span>
+     			</div>
+     		</li>
+     		<li><img src="img/huaLang3.png"/>
+     			<div class="addInfo pa t0 tc pointer">
+     				<br /><br /><br /> 
+     				  <span class="white f16">名家纯手工紫砂壶</span><br /><br />
+     				  <span class="Artprice lightGreen f18">￥1799</span>
+     			</div>
+     		</li>
+     		<li><img src="img/huaLang1.png"/>
+     			<div class="addInfo pa t0 tc pointer">
+     				<br /><br /><br /> 
+     				  <span class="white f16">名家纯手工紫砂壶</span><br /><br />
+     				  <span class="Artprice lightGreen f18">￥1799</span>
+     			</div>
+     		</li>
+     		<li><img src="img/huaLang2.png"/>
+     			<div class="addInfo pa t0 tc pointer">
+     				<br /><br /><br /> 
+     				  <span class="white f16">名家纯手工紫砂壶</span><br /><br />
+     				  <span class="Artprice lightGreen f18">￥1799</span>
+     			</div>
+     		</li>
+     	</ul>
+     	</div>
+     </div>
+     
+<!--画廊制作结束-->
+
+<!--商品展示-->
+
+    <!--家庭艺术品-->
+ <div class="good autoMargin pr">
+ 	  <div class="gTitle border-buttom">
+ 	 <span class="f18 pl-10 pr-30">
+ 	 	家庭艺术品
+ 	 </span>
+ 	  <a href="#">木器家具</a> 	
+ 	  <a href="#">民间艺术品</a> 	
+ 	  <a href="#">端午节礼物</a> 	
+ 	  <a href="#">更多</a> 	
+ 	  </div>
+ 	  
+ 	<ul class="goodList">
+ 		<li><img src="img/good1.png"/>
+ 			  <span class="pl-5 pr-10">
+ 			  	【景缘玉坊】103.9特色料枯木逢春
+ 			  </span>
+ 			  <br /><br />
+ 			  <br /><br />
+ 			  <span class="goodPrice lightGreen f20 pl-10">￥12000</span>
+ 			<p class="favourite f12 fr pr-10 pointer">100</p>
+ 		</li>
+ 		<li><img src="img/good1.png"/>
+ 			  <span class="pl-5 pr-10">
+ 			  	【景缘玉坊】103.9特色料枯木逢春
+ 			  </span>
+ 			  <br /><br />
+ 			  <br /><br />
+ 			  <span class="goodPrice lightGreen f20 pl-10">￥12000</span>
+ 			<p class="favourite f12 fr pr-10 pointer">100</p>
+ 		</li>
+ 		<li><img src="img/good1.png"/>
+ 			  <span class="pl-5 pr-10">
+ 			  	【景缘玉坊】103.9特色料枯木逢春
+ 			  </span>
+ 			  <br /><br />
+ 			  <br /><br />
+ 			  <span class="goodPrice lightGreen f20 pl-10">￥12000</span>
+ 			<p class="favourite f12 fr pr-10 pointer">100</p>
+ 		</li>
+ 		<li><img src="img/good1.png"/>
+ 			  <span class="pl-5 pr-10">
+ 			  	【景缘玉坊】103.9特色料枯木逢春
+ 			  </span>
+ 			  <br /><br />
+ 			  <br /><br />
+ 			  <span class="goodPrice lightGreen f20 pl-10">￥12000</span>
+ 			<p class="favourite f12 fr pr-10 pointer">100</p>
+ 		</li> 
+ 		<li><img src="img/good1.png"/>
+ 			  <span class="pl-5 pr-10">
+ 			  	【景缘玉坊】103.9特色料枯木逢春
+ 			  </span>
+ 			  <br /><br />
+ 			  <br /><br />
+ 			  <span class="goodPrice lightGreen f20 pl-10">￥12000</span>
+ 			<p class="favourite f12 fr pr-10 pointer">100</p>
+ 		</li>
+ 		<li><img src="img/good1.png"/>
+ 			  <span class="pl-5 pr-10">
+ 			  	【景缘玉坊】103.9特色料枯木逢春
+ 			  </span>
+ 			  <br /><br />
+ 			  <br /><br />
+ 			  <span class="goodPrice lightGreen f20 pl-10">￥12000</span>
+ 			<p class="favourite f12 fr pr-10 pointer">100</p>
+ 		</li>
+ 		<li><img src="img/good1.png"/>
+ 			  <span class="pl-5 pr-10">
+ 			  	【景缘玉坊】103.9特色料枯木逢春
+ 			  </span>
+ 			  <br /><br />
+ 			  <br /><br />
+ 			  <span class="goodPrice lightGreen f20 pl-10">￥12000</span>
+ 			<p class="favourite f12 fr pr-10 pointer">100</p>
+ 		</li>
+ 		<li><img src="img/good1.png"/>
+ 			  <span class="pl-5 pr-10">
+ 			  	【景缘玉坊】103.9特色料枯木逢春
+ 			  </span>
+ 			  <br /><br />
+ 			  <br /><br />
+ 			  <span class="goodPrice lightGreen f20 pl-10">￥12000</span>
+ 			<p class="favourite f12 fr pr-10 pointer">100</p>
+ 		</li>
+ 		
+ 	</ul>
+ 	<div class="cb"></div>
+ </div>
+    
+    <!--办公室艺术品-->
+    <div class="good autoMargin pr mt-25">
+ 	  <div class="gTitle border-buttom">
+ 	 <span class="f18 pl-10 pr-30">
+ 	 	办公室艺术品
+ 	 </span>
+ 	  <a href="#">瓷器</a> 	
+ 	  <a href="#">紫砂壶</a> 	
+ 	  <a href="#">文房用品</a> 	
+ 	  <a href="#">更多</a> 	
+ 	  </div>
+ 	  
+ 	<ul class="goodList">
+ 		<li><img src="img/good1.png"/>
+ 			  <span class="pl-5 pr-10">
+ 			  	【景缘玉坊】103.9特色料枯木逢春
+ 			  </span>
+ 			  <br /><br />
+ 			  <br /><br />
+ 			  <span class="goodPrice lightGreen f20 pl-10">￥12000</span>
+ 			<p class="favourite f12 fr pr-10 pointer">100</p>
+ 		</li>
+ 		<li><img src="img/good1.png"/>
+ 			  <span class="pl-5 pr-10">
+ 			  	【景缘玉坊】103.9特色料枯木逢春
+ 			  </span>
+ 			  <br /><br />
+ 			  <br /><br />
+ 			  <span class="goodPrice lightGreen f20 pl-10">￥12000</span>
+ 			<p class="favourite f12 fr pr-10 pointer">100</p>
+ 		</li>
+ 		<li><img src="img/good1.png"/>
+ 			  <span class="pl-5 pr-10">
+ 			  	【景缘玉坊】103.9特色料枯木逢春
+ 			  </span>
+ 			  <br /><br />
+ 			  <br /><br />
+ 			  <span class="goodPrice lightGreen f20 pl-10">￥12000</span>
+ 			<p class="favourite f12 fr pr-10 pointer">100</p>
+ 		</li>
+ 		<li><img src="img/good1.png"/>
+ 			  <span class="pl-5 pr-10">
+ 			  	【景缘玉坊】103.9特色料枯木逢春
+ 			  </span>
+ 			  <br /><br />
+ 			  <br /><br />
+ 			  <span class="goodPrice lightGreen f20 pl-10">￥12000</span>
+ 			<p class="favourite f12 fr pr-10 pointer">100</p>
+ 		</li>
+ 		<li><img src="img/good1.png"/>
+ 			  <span class="pl-5 pr-10">
+ 			  	【景缘玉坊】103.9特色料枯木逢春
+ 			  </span>
+ 			  <br /><br />
+ 			  <br /><br />
+ 			  <span class="goodPrice lightGreen f20 pl-10">￥12000</span>
+ 			<p class="favourite f12 fr pr-10 pointer">100</p>
+ 		</li>
+ 		<li><img src="img/good1.png"/>
+ 			  <span class="pl-5 pr-10">
+ 			  	【景缘玉坊】103.9特色料枯木逢春
+ 			  </span>
+ 			  <br /><br />
+ 			  <br /><br />
+ 			  <span class="goodPrice lightGreen f20 pl-10">￥12000</span>
+ 			<p class="favourite f12 fr pr-10 pointer">100</p>
+ 		</li>
+ 		<li><img src="img/good1.png"/>
+ 			  <span class="pl-5 pr-10">
+ 			  	【景缘玉坊】103.9特色料枯木逢春
+ 			  </span>
+ 			  <br /><br />
+ 			  <br /><br />
+ 			  <span class="goodPrice lightGreen f20 pl-10">￥12000</span>
+ 			<p class="favourite f12 fr pr-10 pointer">100</p>
+ 		</li>
+ 		<li><img src="img/good1.png"/>
+ 			  <span class="pl-5 pr-10">
+ 			  	【景缘玉坊】103.9特色料枯木逢春
+ 			  </span>
+ 			  <br /><br />
+ 			  <br /><br />
+ 			  <span class="goodPrice lightGreen f20 pl-10">￥12000</span>
+ 			<p class="favourite f12 fr pr-10 pointer">100</p>
+ 		</li>
+ 		
+ 	</ul>
+ 	<div class="cb"></div>
+ </div>
+ 
+ <!--商品展示结束-->
+ 
+ <!--底部的设计-->
+   <div class="w footer">
+   	<div class="footerGuide pr">
+   		<div class="Guidecontent pl-100 pr" >
+   			<div class="guideTitle">
+   				<a href="#" class="tablecell"><img src="img/bao.png" width="50" class="pr-10"/></a>
+   			<a href="#" class="f20 tablecell">新手指导</a>
+   			</div>
+   			<div class="guideTitle">
+   				<a href="#" class="tablecell"><img src="img/bao.png" width="50" class="pr-10"/></a>
+   			<a href="#" class="f20 tablecell">商城保证</a>
+   			</div><div class="guideTitle">
+   				<a href="#" class="tablecell"><img src="img/bao.png" width="50" class="pr-10"/></a>
+   			<a href="#" class="f20 tablecell">会员服务</a>
+   			</div><div class="guideTitle">
+   				<a href="#" class="tablecell"><img src="img/bao.png" width="50" class="pr-10"/></a>
+   			<a href="#" class="f20 tablecell">商家入驻</a>
+   			</div> 
+   			
+   			 <ul>
+   		 	<li>购物流程</li>
+   		 	<li>联系客服</li>
+   		 	<li>官方认证</li>
+   		 	<li>实名认证</li>
+   		 	<li>店铺会员</li>
+   		 	<li>买家会员</li>
+   		 	<li>经营范围</li>
+   		 	<li>审核标准</li>
+   		 </ul>	 
+   		</div>
+   		
+   	</div>
+   	  <div class="footerAddress">
+   	  	<div class=" autoMargin pr">
+   	  		<img src="img/code1.png" class="mr-10"/>
+   	  		<img src="img/code1.png"/>
+   	  		<div class="pa r0 t0">
+   	  	   <p class="fr ">盛典易宝城(原新华收藏网)</p><br />
+   	  	   <p class="fr">客服热线:400-632-8008</p><br />
+   	  	   <p class="fr">京ICP备12030928号京公网安备11010502025190号</p><br />
+   	  	   <p class="fr">电信与信息服务业务经营许可证:京ICP证120834号</p><br />
+   	  	   <p class="fr">Copyright&copy;2008-2015 ebaocheng.com版权所有</p>
+   	  			 
+   	  		</div>
+   	  		
+   	  	</div>
+   	  </div>
+   </div>
+	</body>
+</html>

@@ -1,0 +1,99 @@
+ .loginIn {
+	  	height: 30px;
+	  	background-color: #313223;
+	  	opacity: 0.8;
+	  	filter:alpha {
+	  		opacity: 0.8;
+	  	}
+	  	;
+	  	top: 0;
+	  }
+	  .loginIn_content {
+	  	height: 30px;
+	  	line-height: 30px;
+	  }
+	  .loginIn li {
+	  	float: left;
+	  	margin-right: 20px;
+	  	height: 30px;
+	  	line-height: 30px;
+	  }
+	  .loginIn li a {
+	  	color: white;
+	  }
+	  .loginIn .loginIn_lastLitem {
+	  	background: url(../img/shoppoingCar.gif) no-repeat 0 -2px;
+	  	padding-left: 30px;
+	  }
+	  .nav {
+	  	background-color: #313223;
+	  	opacity: 0.8;
+	  	filter:alpha {
+	  		opacity:80;
+	  	}
+	  	;
+	  	top:30px;
+	  	height: 50px;
+	  }
+	  .navContent {
+	  	line-height: 50px;
+	  }
+           .aCalss {
+	  	color: white;
+	  	font-size: 15px;
+	  	padding-left: 35px;
+	  	position: relative;
+	  }
+	  
+	  .navContent a .navClass{ width: 380px; height: auto; background-color:black; opacity: 0.6; filter:alpha(opacity:60); left: -130px; top: 35px;  border-radius: 10px; box-shadow: 10px 0 10px #CBCBCB; padding: 5px 20px; display: none;}
+	   
+	  
+	  .notice {
+	  	background-color: #e2e2e2;
+	  	line-height: 52px;
+	  	height: 52px;
+	  	margin-top: -20px;
+	  }
+	  .noticeTitle {
+	  	background: url(../img/belling1.gif) no-repeat 0, 0;
+	  	padding-left: 40px;
+	  }
+	  .time {
+	  	color: #999;
+	  	float: right;
+	  	font-size: 12px;
+	  }
+	  .lightGreen {
+	  	color: #00ddcd;
+	  }
+	  .textScroll {
+	  	background: url(../img/line.gif) no-repeat 0 8px;
+	  	width: 170px;
+	  	padding-left: 20px;
+	  	font-size: 12px;
+	  	overflow: hidden;
+	  	display: block;
+	  	height: 38px;
+	  }
+	  .showLan{ width: 1020px; height: 170px; top:10px; }
+	  .showPre{ top: 60px;}
+	  .showNext{ top: 60px;}
+	   #oDiv{ position:absolute;margin: 10px 0; left: 50px;width: 920px; height: 150px; overflow: hidden; }
+	  .showList{ height: 150px; }
+	  .showList li{ margin: 0 10px; float: left; position: relative;}
+	  .showList li img{ border: 5px solid #999999;}
+	  .showList li .addInfo{ width: 200px; height: 140px; background-color: #999999; opacity: 0.6; filter: alpha(opacity=60); display: none;}
+	  .showList li:hover .addInfo{ display: block;border: 5px solid #00DDCD;box-shadow:0px 0px 30px #00ddcd; -moz-box-shadow:0px 0px 30px #00ddcd; -webkit-box-shadow:0px 0px 30px #00ddcd;}/*�������Ч��*/
+	  
+	  
+       
+        /*�ײ�����ʽ*/
+       .footer{ height: 300px; margin-top: 80px;}
+       .footer .footerGuide{ height: 150px; background: url(../img/bgGuide.png);}
+       .footer .footerGuide .Guidecontent{ width: 920px; height: 150px; margin: 0 auto; }
+      .footer .footerGuide .Guidecontent div{ width: 230px;  float: left; padding-top: 20px;}
+       .footer .footerGuide .Guidecontent div a{ color: gray;}
+        .footer .footerGuide .Guidecontent li{ width: 150px; margin-left: 80px; list-style: url(../img/dot1.png); float: left; padding: 5px 0;}
+       .footerAddress{ background-color: #6b6b6b; height: 150px;}
+       .footerAddress div{ width: 920px; height: 120px;}
+       .footerAddress div div { color: white; padding-top: 30px;}
